@@ -13,8 +13,6 @@ public class SunRotation : MonoBehaviour
     public DateTime summerSolstice;
     public DateTime winterSolstice;
 
-    public float dayDuration = 24f; // Real-time hours for a full day in the game
-
     float sunAngle;
     float gameObjectAngle = 360f;
     float angle;
@@ -38,7 +36,7 @@ public class SunRotation : MonoBehaviour
         //sunAngle = System.Math.Abs(sunAngle);
 
         // Adjust sun's position
-        sunOrbit.transform.rotation = Quaternion.Euler(new Vector3(sunAngle * gameObjectAngle - 90f, 0, 0));
+        sunOrbit.transform.rotation = Quaternion.Euler(new Vector3(RotateSun(sunAngle), 0, 0));
 
         
 
@@ -49,11 +47,11 @@ public class SunRotation : MonoBehaviour
         sunOrbit.rotation = Quaternion.Euler(sunAngle, 0f, 0f);*/
     }
 
-    private float RotateSun()
+    private float RotateSun(float sunAngle)
     {
 
         // Calculate the angle based on the current time.
-        angle = (float)(DateTime.Now.Hour * gameObjectAngle / dayDuration);
+        angle = (float)(sunAngle * gameObjectAngle) / 90f;
 
         return angle;
     }

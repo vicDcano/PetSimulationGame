@@ -2,40 +2,53 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.XR;
+using UnityEngine.XR;
 
 public class CameraRestriction : MonoBehaviour
 {
-    public float minYRotation = -60f; // Minimum allowed Y rotation
-    public float maxYRotation = 60f;  // Maximum allowed Y rotation
-    public float minXRotation = -30f; // Minimum allowed X rotation
-    public float maxXRotation = 30f;  // Maximum allowed X rotation
+    public Transform petTransform; // Reference to the pet or the environment center
+    public float maxYRotation = 45f; // Adjust this value to limit rotation
+    public float maxXPosition = 0.1f; // Adjust this value to limit up/down movement
+    public float maxZPosition = 0.1f; // Adjust this value to limit side-to-side movement
 
-    private Transform xrCamera;
+    private Vector3 initialPosition; // Store the initial position of the camera
 
-    void Start()
+    private void Start()
     {
-        // Get the XR camera transform (usually the main camera in VR)
-        xrCamera = Camera.main.transform;
+        // Store the initial position of the camera
+        initialPosition = transform.position;
     }
 
-    void Update()
+    private void Update()
     {
-        // Get the current rotation of the camera
-        Vector3 currentRotation = xrCamera.localEulerAngles;
+        // Get the headset's rotation
+        Quaternion headsetRotation = InputTracking.GetLocalRotation(XRNode.Head);
+        float yRotation = headsetRotation.eulerAngles.y;
 
-        // Clamp the X and Y rotation values
-        currentRotation.x = ClampAngle(currentRotation.x, minXRotation, maxXRotation);
-        currentRotation.y = ClampAngle(currentRotation.y, minYRotation, maxYRotation);
+        // Normalize the rotation to -180 to 180
+        if (yRotation > 180) yRotation -= 360;
 
-        // Apply the clamped rotation to the camera
-        xrCamera.localEulerAngles = currentRotation;
-    }
+        // Clamp the Y rotation
+        yRotation = Mathf.Clamp(yRotation, -maxYRotation, maxYRotation);
 
-    // Helper function to clamp angles correctly (handles Unity's 0-360 range)
-    private float ClampAngle(float angle, float min, float max)
-    {
-        if (angle < -360f) angle += 360f;
-        if (angle > 360f) angle -= 360f;
-        return Mathf.Clamp(angle, min, max);
+        // Calculate the target rotation based on the pet's position
+        Vector3 directionToPet = petTransform.position - transform.position;
+        Quaternion targetRotation = Quaternion.LookRotation(directionToPet, Vector3.up);
+
+        // Apply the clamped rotation to the target rotation
+        Quaternion finalRotation = Quaternion.Euler(0, yRotation, 0) * targetRotation;
+
+        // Apply the final rotation to the camera
+        transform.rotation = finalRotation;
+
+        // Get the headset's position
+        Vector3 headsetPosition = InputTracking.GetLocalPosition(XRNode.Head);
+
+        // Clamp the X and Z positions
+        float clampedX = Mathf.Clamp(headsetPosition.x, -maxXPosition, maxXPosition);
+        float clampedZ = Mathf.Clamp(headsetPosition.z, -maxZPosition, maxZPosition);
+
+        // Apply the clamped position to the camera
+        transform.position = initialPosition + new Vector3(clampedX, 0, clampedZ);
     }
 }
