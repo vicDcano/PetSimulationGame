@@ -14,7 +14,7 @@ public class RealCalanderSystem : MonoBehaviour
         DateTime now = DateTime.Now;
 
         // Format the date and time as a string (you can customize the format)
-        string dateTimeString = now.ToString("dd/MM/yyyy\nhh:mm tt");
+        string dateTimeString = now.ToString("dd/MM/yyyy\n\nhh:mm tt");
 
         // Update the UI Text component with the formatted date and time
         dateTimeText.text = dateTimeString;

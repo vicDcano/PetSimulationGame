@@ -1,49 +1,86 @@
 using PetSystem;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class VirtualPet : MonoBehaviour
 {
     public PetPersonalityDataBase personality;
+    private Pet pet;
 
-    // Status Needs
-    public float hunger = 100f;       // Hunger level (0 = starving, 100 = full)
-    public float happiness = 100f;   // Happiness level (0 = sad, 100 = happy)
-    public float energy = 100f;      // Energy level (0 = exhausted, 100 = fully rested)
+    string personalityCopy;
+
+    public SecondaryTrait currentTrait;
+
+    public Text stringPersonality;
+
+    private int wakeUpTime;
+    private int sleepTime;
 
     void Start()
     {
         // Randomly assign a specific personality type (e.g., Foody)
-        PersonalityType randomTrait = (PersonalityType)Random.Range(0, (int)PersonalityType.Playful);
+        PersonalityType randomTrait = (PersonalityType)Random.Range(0, (int)PersonalityType.CleanFreak);
 
         // Random trait is selected and goes to the script where the personality traits done to the needs
         personality = PetPersonalityDataBase.GeneratePersonality(randomTrait);
 
+        pet = GetComponent<Pet>();
+        pet.InItNeeds();
+        pet.ApplyPersonality(personality);
+
+        UpdateSleepSchedule();
+
         // Debugging assigned traits and see the effects it is doing to the needs
         Debug.Log($"Personality Type: {randomTrait}");
-        Debug.Log($"Hunger Rate: {personality.hungerRate}");
-        Debug.Log($"Social Need: {personality.socialRate}");
-        Debug.Log($"Energy Level: {personality.energyRate}");
-        Debug.Log($"Playfulness: {personality.playRate}");
+
+        personalityCopy = randomTrait.ToString();
+
+        string copyPersona = "Personality: " + personalityCopy;
+        stringPersonality.text = copyPersona;
     }
 
-    void Update()
-    {
-        // Update hunger based on hungerRate
-        hunger -= Time.deltaTime * personality.hungerRate;
 
-        // Update happiness based on socialNeed (pet loses happiness if ignored)
-        if (IsIgnored())
+
+    void UpdateSleepSchedule()
+    {
+        switch (currentTrait)
         {
-            happiness -= Time.deltaTime * personality.socialRate;
+            case SecondaryTrait.EarlyBird:
+                wakeUpTime = 4;  // 4 AM
+                sleepTime = 20;  // 8 PM (20 in 24-hour format)
+                break;
+            case SecondaryTrait.DayWalker:
+                wakeUpTime = 6;  // 6 AM
+                sleepTime = 22;  // 10 PM (22 in 24-hour format)
+                break;
+            case SecondaryTrait.NightOwl:
+                wakeUpTime = 9;  // 9 AM
+                sleepTime = 1;   // 1 AM (1 in 24-hour format)
+                break;
         }
 
-        // Update energy based on energyLevel
-        energy -= Time.deltaTime * (1f / personality.energyRate);
+        Debug.Log($"Pet's wake-up time: {wakeUpTime}:00, Sleep time: {sleepTime}:00");
+    }
 
-        // Clamp values to keep them within bounds
-        hunger = Mathf.Clamp(hunger, 0f, 100f);
-        happiness = Mathf.Clamp(happiness, 0f, 100f);
-        energy = Mathf.Clamp(energy, 0f, 100f);
+    public void ChangeTrait(SecondaryTrait newTrait)
+    {
+        currentTrait = newTrait;
+        UpdateSleepSchedule();
+    }
+
+    public bool IsAwake()
+    {
+        int currentHour = System.DateTime.Now.Hour;
+
+        if(sleepTime > wakeUpTime)
+        {
+            return currentHour >= wakeUpTime && currentHour < sleepTime;
+        }
+
+        else
+        {
+            return currentHour >= wakeUpTime || currentHour < sleepTime;
+        }
     }
 
     // Pet is ignored if no interaction happens for a while

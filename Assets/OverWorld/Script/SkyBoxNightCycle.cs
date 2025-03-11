@@ -47,7 +47,7 @@ public class SkyBoxNightCycle : MonoBehaviour
 
             // Update the skybox material's transition value
             skyboxMaterial.SetFloat("_CubemapTransition", transitionValue);
-            Debug.Log($"Transition Value: {transitionValue}");
+            //Debug.Log($"Transition Value: {transitionValue}");
 
             yield return null;
         }
