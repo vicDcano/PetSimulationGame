@@ -1,18 +1,18 @@
 fileFormatVersion: 2
-guid: 78a6a1fdcf47b80418cf253f8ba33bbb
+guid: 62815748bf4284344a9b9b425c0a465a
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
   fontSize: 16
-  forceTextureCase: -1
+  forceTextureCase: -2
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Starborn
+  - Halo Dek
   fallbackFontReferences: []
   customCharacters: 
-  fontRenderingMode: 1
+  fontRenderingMode: 0
   ascentCalculationMode: 1
   useLegacyBoundsCalculation: 0
   shouldRoundAdvanceValue: 1

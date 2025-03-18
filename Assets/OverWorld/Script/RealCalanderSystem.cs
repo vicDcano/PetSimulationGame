@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI; // Required for UI elements like Text
 using System; // Required for DateTime
+using TMPro;
 
 public class RealCalanderSystem : MonoBehaviour
 {
-    public Text dateTimeText; // Reference to the UI Text component
+    public TMP_Text dateTimeText;
 
     void Update()
     {

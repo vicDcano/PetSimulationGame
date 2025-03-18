@@ -1,6 +1,7 @@
 using PetSystem;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class VirtualPet : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class VirtualPet : MonoBehaviour
 
     public SecondaryTrait currentTrait;
 
-    public Text stringPersonality;
+    public TMP_Text stringPersonality;
 
     private int wakeUpTime;
     private int sleepTime;

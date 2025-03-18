@@ -6,7 +6,7 @@
             "id": "2d005fb4-d938-489e-baae-484fc59dd2cc",
             "actions": [
                 {
-                    "name": "Primary",
+                    "name": "ButtonX",
                     "type": "Button",
                     "id": "91c3c566-3cf9-4952-beae-ff7d8f4597af",
                     "expectedControlType": "Button",
@@ -23,35 +23,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "XR Controller",
-                    "action": "Primary",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "PrimaryTrigger",
-            "id": "3af12223-c92f-49eb-9f10-c34ca7cbd04f",
-            "actions": [
-                {
-                    "name": "New action",
-                    "type": "Button",
-                    "id": "a9a31283-1144-43a4-9695-811e006f2f3c",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "2fed1df2-8c8c-447b-b523-1e855c8d68a4",
-                    "path": "CommonUsage.trigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "XR Controller",
-                    "action": "New action",
+                    "action": "ButtonX",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -62,7 +34,7 @@
             "id": "8d4bb951-e197-4147-aa11-be521fe88d59",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "MenuButton",
                     "type": "Button",
                     "id": "ffa28c83-d26a-4ebf-a4b0-dbaf03c04d7e",
                     "expectedControlType": "Button",
@@ -79,63 +51,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "XR Controller",
-                    "action": "New action",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "AButtonAction",
-            "id": "fbd3a60c-8093-4697-abf9-743c394a662d",
-            "actions": [
-                {
-                    "name": "New action",
-                    "type": "Button",
-                    "id": "0c1d0b8e-f868-46cc-9f47-08aa309b5ff1",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "61811e75-151e-4e8b-9722-68030ea1f0bf",
-                    "path": "RightHand/A",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "XR Controller",
-                    "action": "New action",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "BButtonAction",
-            "id": "73c7bcf4-1041-41fa-98fa-1f5dc65a3aa0",
-            "actions": [
-                {
-                    "name": "New action",
-                    "type": "Button",
-                    "id": "d62ac379-3e91-4a60-924a-de4df559eacb",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "b3914ce2-3cfc-4d48-be1c-d2429eeaeece",
-                    "path": "RightHand/B",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "XR Controller",
-                    "action": "New action",
+                    "action": "MenuButton",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

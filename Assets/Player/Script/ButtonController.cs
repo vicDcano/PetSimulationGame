@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.XR;
+using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ButtonController : MonoBehaviour
 {
@@ -11,73 +13,23 @@ public class ButtonController : MonoBehaviour
 
     public DungeonExploring caveEntrance;
 
-    private InputDevice leftController;
-    private InputDevice rightController;
+   /* public InputAction controllerPress;
+    public InputActionReference ButtonX;
+    public InputActionReference MenuButton;
 
     private void Start()
     {
-        GetDevices();
-        /*menuState = GetComponent<MenuStateMachine>();
-        InGgame();*/
-        /*needsMenu = GetComponent<NeedsMenuToggle>();
-        mainMenu = GetComponent<MainMenuPress>();*/
+        ButtonX.action.performed += buttonX;
     }
 
-    private void Update()
+    private void OnMouseUpAsButton(InputAction.CallbackContext.callback)
     {
-        if (!leftController.isValid || !rightController.isValid)
-        {
-            GetDevices();
-        }
-
-        CheckForInput();
-    }
-
-    private void GetDevices()
-    {
-        var leftHandDevices = new List<InputDevice>();
-        var rightHandDevices = new List<InputDevice>();
-
-        InputDevices.GetDevicesAtXRNode(XRNode.LeftHand, leftHandDevices);
-        InputDevices.GetDevicesAtXRNode(XRNode.RightHand, rightHandDevices);
-
-        if (leftHandDevices.Count > 0)
-        {
-            leftController = leftHandDevices[0];
-        }
-
-        if (rightHandDevices.Count > 0)
-        {
-            rightController = rightHandDevices[0];
-        }
-    }
-
-    private void CheckForInput()
-    {
-        // Check for Menu Button (Left Controller)
-        if (leftController.TryGetFeatureValue(CommonUsages.menuButton, out bool menuButtonPressed) && menuButtonPressed)
-        {
-            Debug.Log("Menu Button Pressed");
-            mainMenuPress.ToggleMenu();
-        }
-
-        // Check for A Button (Right Controller)
-        if (rightController.TryGetFeatureValue(CommonUsages.primaryButton, out bool aButtonPressed) && aButtonPressed)
-        {
-            Debug.Log("A Button Pressed");
-            menuState.StateChange(MenuState.Status);
-        }
-
-        // Check for B Button (Right Controller)
-        if (rightController.TryGetFeatureValue(CommonUsages.secondaryButton, out bool bButtonPressed) && bButtonPressed)
-        {
-            Debug.Log("B Button Pressed");
-            GoToCave(); // Call the method to go to the cave
-        }
+        menuState.StateChange(MenuState.Status);
     }
 
     private void GoToCave()
     {
+        
         if (caveEntrance != null)
         {
             caveEntrance.StartTimer(); // Start the timer and teleport logic
@@ -89,6 +41,11 @@ public class ButtonController : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        ButtonX.action.performed -= buttonX;
+    }
+*/
     /*private void Update()
     {
         *//*
