@@ -5,9 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/VirtualIslandAdventure.unity
+    guid: ad1e4fe64bf94bd439443281f765f41a
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: df64bea10990cd440bcf25026487d09a, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: ce1b34754d8e6384d87ee34132622ab6, type: 2}

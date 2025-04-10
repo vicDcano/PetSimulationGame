@@ -2600,6 +2600,94 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Custom Action Buttons",
+            "id": "99e36f7a-d178-4d38-b1d3-9e2040fcffbe",
+            "actions": [
+                {
+                    "name": "NeedsScreen",
+                    "type": "Button",
+                    "id": "f8febe15-9648-4f6b-9c95-a593d8a05e2d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MenuScreen",
+                    "type": "Button",
+                    "id": "01402621-bd04-4bbf-9bf2-9a0d22b94791",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "InventoryScreen",
+                    "type": "Button",
+                    "id": "c02099de-d438-46db-a043-216215418c79",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Grab",
+                    "type": "Value",
+                    "id": "5b5f12b8-027f-44c1-b2a2-d0809ad2d6b8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "0ac0bd30-2704-4f8a-8855-0562c47d5c7e",
+                    "path": "<XRController>{LeftHand}/menuButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "MenuScreen",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f6e50ee3-3a54-4dff-8be5-d94f467ad452",
+                    "path": "<XRController>{LeftHand}/secondaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "NeedsScreen",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ff44a39b-2e7f-4ce4-b26e-fed927d9edde",
+                    "path": "<XRController>{LeftHand}/{PrimaryButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "InventoryScreen",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "42ecefd1-8a60-48d1-a4be-962a9aa2e887",
+                    "path": "<XRController>/{GripButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "Grab",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

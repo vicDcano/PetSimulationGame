@@ -13,39 +13,78 @@ public class ButtonController : MonoBehaviour
 
     public DungeonExploring caveEntrance;
 
-   /* public InputAction controllerPress;
-    public InputActionReference ButtonX;
-    public InputActionReference MenuButton;
+    public InputActionReference buttonY = null;
+    public InputActionReference buttonX = null;
+    public InputActionReference menuButton = null;
 
-    private void Start()
+    private void Awake()
     {
-        ButtonX.action.performed += buttonX;
-    }
-
-    private void OnMouseUpAsButton(InputAction.CallbackContext.callback)
-    {
-        menuState.StateChange(MenuState.Status);
-    }
-
-    private void GoToCave()
-    {
-        
-        if (caveEntrance != null)
-        {
-            caveEntrance.StartTimer(); // Start the timer and teleport logic
-            Debug.Log("Player is going to the cave.");
-        }
-        else
-        {
-            Debug.LogError("Cave Entrance script is not assigned.");
-        }
+        buttonY.action.started += ToggleNeeds;
+        buttonX.action.started += ToggleInventory;
+        menuButton.action.started += ToggleMenu;
     }
 
     private void OnDestroy()
     {
-        ButtonX.action.performed -= buttonX;
+        buttonY.action.started -= ToggleNeeds;
+        buttonX.action.started -= ToggleInventory;
+        menuButton.action.started -= ToggleMenu;
     }
-*/
+
+    private void ToggleNeeds(InputAction.CallbackContext context)
+    {
+        /*bool isActive = !gameObject.activeSelf;
+        gameObject.SetActive(isActive);*/
+        menuState.StateChange(MenuState.Status);
+    }
+
+    private void ToggleMenu(InputAction.CallbackContext context)
+    {
+        /*bool isActive = !gameObject.activeSelf;
+        gameObject.SetActive(isActive);*/
+
+        mainMenuPress.ToggleMenu();
+    }
+
+    private void ToggleInventory(InputAction.CallbackContext context)
+    {
+        bool isActive = !gameObject.activeSelf;
+        gameObject.SetActive(isActive);
+    }
+
+    /* public InputAction controllerPress;
+     public InputActionReference ButtonX;
+     public InputActionReference MenuButton;
+
+     private void Start()
+     {
+         ButtonX.action.performed += buttonX;
+     }
+
+     private void OnMouseUpAsButton(InputAction.CallbackContext.callback)
+     {
+         menuState.StateChange(MenuState.Status);
+     }
+
+     private void GoToCave()
+     {
+
+         if (caveEntrance != null)
+         {
+             caveEntrance.StartTimer(); // Start the timer and teleport logic
+             Debug.Log("Player is going to the cave.");
+         }
+         else
+         {
+             Debug.LogError("Cave Entrance script is not assigned.");
+         }
+     }
+
+     private void OnDestroy()
+     {
+         ButtonX.action.performed -= buttonX;
+     }
+ */
     /*private void Update()
     {
         *//*
