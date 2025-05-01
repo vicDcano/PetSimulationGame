@@ -11,16 +11,19 @@ public abstract class Item : ScriptableObject
     public bool isUnlimited; // For items like apples, beds that don't deplete
 }
 
-// InventoryItem.cs - Represents an item in inventory
-[System.Serializable]
-public class InventoryItem
-{
-    public Item item;
-    public int quantity;
 
-    public InventoryItem(Item item, int quantity)
-    {
-        this.item = item;
-        this.quantity = quantity;
-    }
+[CreateAssetMenu(fileName = "New Consumable", menuName = "Inventory/Consumable Item")]
+public class ConsumableItem : Item  // Inherits from your abstract Item class
+{
+    public int hungerRestore;  // Example unique property
 }
+
+/*using UnityEngine;
+
+[System.Serializable]
+public class Item
+{
+    public string itemName;
+    public Sprite icon;
+    // Add any other properties you need
+}*/

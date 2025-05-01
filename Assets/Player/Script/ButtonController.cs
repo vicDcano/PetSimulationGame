@@ -4,24 +4,29 @@ using UnityEngine.XR;
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 public class ButtonController : MonoBehaviour
 {
 
     [SerializeField] private MenuStateMachine menuState;
     [SerializeField] private MainMenuPress mainMenuPress;
+    [SerializeField] private InventoryManager inventoryManager;
 
     public DungeonExploring caveEntrance;
 
     public InputActionReference buttonY = null;
     public InputActionReference buttonX = null;
     public InputActionReference menuButton = null;
+    public InputActionReference confirmButton = null;
 
     private void Awake()
     {
         buttonY.action.started += ToggleNeeds;
         buttonX.action.started += ToggleInventory;
         menuButton.action.started += ToggleMenu;
+        confirmButton.action.started += confirmPressed;
+
     }
 
     private void OnDestroy()
@@ -29,6 +34,8 @@ public class ButtonController : MonoBehaviour
         buttonY.action.started -= ToggleNeeds;
         buttonX.action.started -= ToggleInventory;
         menuButton.action.started -= ToggleMenu;
+        confirmButton.action.started -= confirmPressed;
+
     }
 
     private void ToggleNeeds(InputAction.CallbackContext context)
@@ -48,9 +55,45 @@ public class ButtonController : MonoBehaviour
 
     private void ToggleInventory(InputAction.CallbackContext context)
     {
-        bool isActive = !gameObject.activeSelf;
-        gameObject.SetActive(isActive);
+        menuState.StateChange(MenuState.Inventory);
     }
+
+    public void confirmPressed(InputAction.CallbackContext context)
+    {
+        // Only process if in the MainMenu state
+        if (menuState.CurrentGameState == GameState.MainMenu)
+        {
+            // Check if a UI button is currently selected (hovered)
+            if (EventSystem.current.currentSelectedGameObject != null)
+            {
+                // Simulate a button click
+                ExecuteEvents.Execute(
+                    EventSystem.current.currentSelectedGameObject,
+                    new BaseEventData(EventSystem.current),
+                    ExecuteEvents.submitHandler
+                );
+                Debug.Log("Confirm button pressed on UI element!");
+            }
+        }
+    }
+
+    public void OnShopButtonPressed()
+    {
+        if (menuState.CurrentGameState == GameState.MainMenu)
+        {
+            menuState.StateChange(MenuState.Shop);
+        }
+    }
+
+    public void OnSettingsButtonPressed()
+    {
+        if (menuState.CurrentGameState == GameState.MainMenu)
+        {
+            menuState.StateChange(MenuState.Settings);
+        }
+    }
+
+
 
     /* public InputAction controllerPress;
      public InputActionReference ButtonX;

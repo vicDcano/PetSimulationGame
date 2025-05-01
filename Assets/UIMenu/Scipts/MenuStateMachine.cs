@@ -94,6 +94,7 @@ public class MenuStateMachine : MonoBehaviour
 
             case MenuState.Inventory:
                 inventory.SetActive(true);
+                Cursor.lockState = CursorLockMode.None;
                 break;
 
             case MenuState.Shop:
@@ -129,6 +130,7 @@ public class MenuStateMachine : MonoBehaviour
 
             case MenuState.Inventory:
                 inventory.SetActive(false);
+                Cursor.lockState = CursorLockMode.Locked;
                 break;
 
             case MenuState.Shop:

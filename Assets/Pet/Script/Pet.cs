@@ -113,26 +113,26 @@ namespace PetSystem
             {
                 NeedsContainer need = new NeedsContainer((Needs)i);
 
-                // Set individual decay rates for each need (you can customize these values)
+                // Set individual decay rates for each need to go down over time
                 switch ((Needs)i)
                 {
                     case Needs.Hunger:
-                        need.decayRate = 0.2f; // Example: Hunger decays at 0.5 per second
+                        need.decayRate = 0.2f; 
                         break;
                     case Needs.Energy:
-                        need.decayRate = 0.02f; // Example: Energy decays at 0.3 per second
+                        need.decayRate = 0.02f;
                         break;
                     case Needs.Fun:
-                        need.decayRate = 0.09f; // Example: Fun decays at 0.4 per second
+                        need.decayRate = 0.09f; 
                         break;
                     case Needs.Bladder:
-                        need.decayRate = 0.3f; // Example: Bladder decays at 0.2 per second
+                        need.decayRate = 0.3f; 
                         break;
                     case Needs.Thirst:
-                        need.decayRate = 0.08f; // Example: Thirst decays at 0.6 per second
+                        need.decayRate = 0.08f; 
                         break;
                     case Needs.Hygiene:
-                        need.decayRate = 0.07f; // Example: Hygiene decays at 0.1 per second
+                        need.decayRate = 0.07f; 
                         break;
                 }
 

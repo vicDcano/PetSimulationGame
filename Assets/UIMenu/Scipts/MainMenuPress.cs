@@ -15,7 +15,7 @@ public class MainMenuPress : MonoBehaviour
 
     private Vector3 initialPos; // Get the player's location it was originally was before the button press
     
-    private float bumper = -42;
+    private float bumper = -12;
     private Quaternion initialRotation; // Get the player's rotation it originally was
 
     private bool inMenu = false; // bringing up the menu when the button is pressed

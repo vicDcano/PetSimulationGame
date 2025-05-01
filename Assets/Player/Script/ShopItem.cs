@@ -1,11 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [System.Serializable]
 public class ShopItem
 {
-    public Item item;
-    public int currentStock; // -1 for infinite
-    public int price; // Can be different from base price
+    public ConsumableItem item;  // References your ConsumableItem ScriptableObject
+    public int price;
+    public int currentStock = -1;
+
+    // Helper property for UI
+    public string StockText => currentStock < 0 ? "∞" : currentStock.ToString();
 }

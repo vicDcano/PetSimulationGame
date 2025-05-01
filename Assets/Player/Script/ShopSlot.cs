@@ -1,49 +1,34 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class ShopSlot : MonoBehaviour
 {
-    public Image icon;
-    public Text itemName;
-    public Text priceText;
-    public Text stockText;
+    public MeshRenderer iconRenderer;
+    public TextMeshPro priceText;
+    public TextMeshPro stockText;
+    public XRSimpleInteractable interactable;
 
-    ShopItem item;
+    private ShopItem _item;
 
-    public void AddItem(ShopItem newItem)
+    void Start()
     {
-        item = newItem;
-        icon.sprite = item.item.icon;
-        icon.enabled = true;
-        itemName.text = item.item.name;
-        priceText.text = item.price.ToString();
-
-        if (item.currentStock == -1)
-        {
-            stockText.text = "∞";
-        }
-        else
-        {
-            stockText.text = item.currentStock.ToString();
-        }
+        interactable.onSelectEntered.AddListener(_ => TryPurchase());
     }
 
-    public void ClearSlot()
+    public void AddItem(ShopItem item)
     {
-        item = null;
-        icon.sprite = null;
-        icon.enabled = false;
-        itemName.text = "";
-        priceText.text = "";
-        stockText.text = "";
+        _item = item;
+        iconRenderer.material.mainTexture = item.item.icon.texture;
+        priceText.text = $"{item.price} coins";
+        stockText.text = item.currentStock < 0 ? "∞" : item.currentStock.ToString();
     }
 
-    public void OnPurchaseButton()
+    public void TryPurchase()
     {
-        if (item != null && ShopManager.Instance != null)
-        {
-            ShopManager.Instance.PurchaseItem(item.item);
-        }
+        if (_item != null)
+            ShopManager.Instance.PurchaseItem(_item.item);
     }
 }
