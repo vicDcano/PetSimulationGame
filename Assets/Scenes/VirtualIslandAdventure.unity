@@ -51068,6 +51068,9 @@ MonoBehaviour:
   currentTrait: 0
   stringPersonality: {fileID: 416099519}
   bedLocation: {fileID: 6146080169718202069}
+  energyRestoreMultiplier: 2
+  hungerDecayReduction: 0.5
+  funDecayReduction: 0.3
 --- !u!114 &3983383875226511366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51087,7 +51090,7 @@ MonoBehaviour:
     decayRate: 0.2
     bonusDecayRate: 0
     satisfationRate: 0
-  - stats: 100
+  - stats: 33
     needType: 1
     decayRate: 0.02
     bonusDecayRate: 0
